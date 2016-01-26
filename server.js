@@ -181,8 +181,10 @@ router.route('/products/new/isbn')
 
 		  //the whole response has been recieved, so we just print it out here
 		  response.on('end', function () {
-		  	res.render('isbn-results', str)
-		    console.log(str);
+		  	var products = JSON.parse(str)
+		  	products.pageTitle = "ISBN Search Result"
+		  	console.log(products);
+		  	res.render('isbn-results', {"products" : products})
 		  });
 		};
 
@@ -191,14 +193,14 @@ router.route('/products/new/isbn')
 
 
 //Display, Update and Delete single product
-router.route('/api/products/:product_id')
+router.route('/products/:product_id')
 
 	//get the product with that id
 	.get(function(req, res){
 		Product.findById(req.params.product_id, function(err, product){
 			if(err)
 				res.send(err);
-			res.json(product);
+			res.render('product-detail', {'product': product});
 		});
 	})
 

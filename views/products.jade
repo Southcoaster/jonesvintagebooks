@@ -5,10 +5,11 @@ block content
 		ul
 			each product, i in products
 				li.product-wrapper
-					p.title Title: #{product.title}
-					p.author Author: #{author}
-					//- .description description: #{product.description}
-					//- .condition condition: #{product.condition}
-					//- //- .notes notes: #{product.notes}
-					//- .location location: #{product.row} #{product.stack} #{product.box}
-					//- .price Price #{product.price}
+					a(href= '#{product._id}')
+						p.title Title: #{product.title_long}
+						p.author Author: #{product.author}
+						p.description description: #{product.description}
+						p.condition condition: #{product.condition}
+						//- .notes notes: #{product.notes}
+						p.location location: #{product.row} #{product.stack} #{product.box}
+						p.price Price #{product.price}
