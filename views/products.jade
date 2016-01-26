@@ -1,0 +1,14 @@
+extend layout
+block content
+	h2 #{products.pageTitle}
+	.container
+		ul
+			each product, i in products
+				li.product-wrapper
+					p.title Title: #{product.title}
+					p.author Author: #{author}
+					//- .description description: #{product.description}
+					//- .condition condition: #{product.condition}
+					//- //- .notes notes: #{product.notes}
+					//- .location location: #{product.row} #{product.stack} #{product.box}
+					//- .price Price #{product.price}

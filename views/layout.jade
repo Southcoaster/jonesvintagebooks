@@ -1,0 +1,18 @@
+doctype
+html
+	head
+		title Jones Vintage Books - #{title}
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		header
+			h1 Jones Vintage Books
+			.link-wrapper
+				a(href='/products/new') Add New Item
+				a(href='/products/') View Products
+		.container
+			.main-content
+				block content
+			.sidebar
+				block sidebar
+		footer
+			p &copy; Copyright Jerry Jones and Oliver Jones 2016.

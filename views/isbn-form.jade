@@ -1,0 +1,9 @@
+extend layout
+block content
+	h2 Input New Product
+	form(name="new-product", action="/products/new/isbn", method="post")
+		div.input
+			span.label ISBN to search for:
+			input(type="text", name="isbn", required, autofocus)
+		div.actions
+			input(type="submit", value="SUBMIT")
