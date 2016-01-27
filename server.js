@@ -27,8 +27,8 @@ app.use(stylus.middleware({
 app.use(express.static(__dirname + '/public'));
 
 var mongoose   = require('mongoose');
-//mongoose.connect('mongodb://localhost/test');
-mongoose.connect('mongodb://o1iverjones:2manybooks@ds035653.mongolab.com:35653/jonesvintagebooksdb'); // connect to our database
+mongoose.connect('mongodb://localhost/test');
+//mongoose.connect('mongodb://o1iverjones:2manybooks@ds035653.mongolab.com:35653/jonesvintagebooksdb'); // connect to our database
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
