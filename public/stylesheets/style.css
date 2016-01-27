@@ -104,13 +104,25 @@ a img {
  * background color as variables
  */
 body {
-  font-family: 'Georgia';
+  font-family: 'Roboto', 'Verdana', 'Helvetica', 'arial', sans-serif;
   background-color: #faf9f0;
   color: #444;
 }
+a {
+  color: #f5deb3;
+  font-size: 0.7em;
+  text-decoration: none;
+  margin: 7px;
+}
+a:hover {
+  color: #a52a2a;
+}
+a:visited {
+  color: #f5deb3;
+}
 header {
   font-family: 'Quicksand';
-  padding: 20px 10px;
+  padding: 10px;
   color: #fff;
   font-size: 25px;
   text-align: center;
@@ -123,28 +135,44 @@ header {
   text-shadow: 0px -1px 0px #df1806;
 }
 header .link-wrapper {
-  margin: 15px 0 0 0;
+  margin: 0;
 }
-header h1 {
-  font-size: 1.5em;
+header h1.mast-head {
+  font-size: 2.3em;
+  color: #fff !important;
 }
-header a {
-  color: #f5deb3;
-  font-size: 0.7em;
-  text-decoration: none;
-  margin: 7px;
+input,
+textarea {
+  font-size: 1.1em;
 }
-header a:hover {
-  color: #a52a2a;
+select,
+option {
+  font-size: 2em;
+  margin-right: 12px;
 }
-header a:visited {
-  color: #daa520;
+.productThumb {
+  float: right;
+  width: 50px;
+  height: 100px;
+}
+.productImage {
+  float: right;
+  width: 200px;
+  height: 400px;
 }
 .input {
-  margin: 10px 0;
+  margin: 20px 0;
+  font-size: 1.2em;
 }
 .input .label {
   margin-right: 7px;
+}
+.input .sublabel {
+  margin-right: 7px;
+  font-size: 0.8em;
+}
+.input-hidden {
+  visibility: hidden;
 }
 .container {
   width: 500px;
@@ -197,6 +225,10 @@ p {
   border: 1px solid #808080;
   padding: 20px;
   margin: 0 auto;
+}
+.product-wrapper a {
+  color: #000;
+  font-size: 1em;
 }
 footer {
   width: 500px;

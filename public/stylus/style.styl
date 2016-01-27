@@ -21,13 +21,23 @@ main-color = #fa5b4d
 background-color = #faf9f0
 
 body
-  font-family 'Georgia'
+  font-family 'Roboto', 'Verdana', 'Helvetica', 'arial', sans-serif
   background-color background-color
   color #444
+  
+a
+  color: wheat
+  font-size: .7em
+  text-decoration: none
+  margin: 7px
+  &:hover
+    color: brown;
+  &:visited
+    color: wheat;
 
 header
   font-family 'Quicksand'
-  padding 20px 10px
+  padding 10px
   color #fff
   font-size 25px
   text-align center
@@ -41,25 +51,40 @@ header
   text-shadow 0px -1px 0px darken(main-color, 30%)
   
   .link-wrapper
-    margin:15px 0 0 0
+    margin:0
     
-  h1
-    font-size: 1.5em
+  h1.mast-head
+    font-size: 2.3em
+    color: white!important
+    
+input, textarea
+  font-size: 1.1em;
 
-header a
-  color: wheat
-  font-size: .7em
-  text-decoration: none
-  margin: 7px
-  &:hover
-    color: brown;
-  &:visited
-    color: goldenrod;
+select, option
+  font-size: 2.0em;
+  margin-right: 12px
+  
+.productThumb 
+  float: right 
+  width:50px
+  height:100px
+  
+.productImage
+  float: right
+  width: 200px
+  height:400px
   
 .input
-  margin: 10px 0
+  margin: 20px 0
+  font-size: 1.2em;
   & .label
     margin-right: 7px
+  & .sublabel
+    margin-right: 7px
+    font-size: 0.8em;
+
+.input-hidden
+  visibility: hidden
 
 .container
   width 500px
@@ -110,6 +135,10 @@ p
   border: 1px solid gray
   padding: 20px
   margin: 0 auto
+  
+  a
+    color: black
+    font-size: 1em
 
 footer
   width 500px

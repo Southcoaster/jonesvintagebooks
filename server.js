@@ -27,15 +27,16 @@ app.use(stylus.middleware({
 app.use(express.static(__dirname + '/public'));
 
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+//mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://o1iverjones:2manybooks@ds035653.mongolab.com:35653/jonesvintagebooksdb'); // connect to our database
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
 	console.log('--- Mongodb connected ---')
 });
-//mongoose.connect('mongodb://o1iverjones:2manybooks@ds035653.mongolab.com:35653/jonesvintagebooksdb'); // connect to our database
 
+//Bring in Product model
 var Product = require('./app/models/product');
 
 //configure app to use bodyParser(), this will let us get the data from a POST 
@@ -84,6 +85,14 @@ var port = process.env.PORT || 8080;
 //ROUTING//
 var router = express.Router();
 
+var getCover = function(isbn){
+	var coverUrl = 'covers.openlibrary.org/b/isbn/';
+	var coverUrlEnding = '.jpg';
+	coverUrl += isbn;
+	coverUrl += coverUrlEnding;
+	return coverUrl
+}
+
 //middleware to use for all requests to the api
 router.use(function(req, res, next){
 	//do logging
@@ -93,7 +102,7 @@ router.use(function(req, res, next){
 
 router.get('/', function(req, res){
 	//res.json({message: 'hooray! welcome to our api!!!!'});
-	res.render('index', {title: 'Home title text'})
+	res.render('index', {title: 'Home Page'})
 });
 
 
@@ -102,13 +111,14 @@ router.route('/products')
 
 	//get all products
 	.get(function(req, res){
-		Product.find(function(err, products){
-			if (err)
-				res.send(err);
-
-			products.pageTitle = "Here are all our products: "
-			res.render('products', {"products" : products})
-		})
+		Product
+		.find({})
+		.limit(10)
+		.sort({_id : -1})
+		.exec(function(err, products){
+			products.pageTitle = "Here are all our products: ";
+			res.render('products', {"products" : products});
+		});
 	});
 
 
@@ -139,13 +149,17 @@ router.route('/products/new')
 			if(err)
 				res.send(err);
 
-			console.log("saving product")			
+			console.log("saving product: "+product._id)			
 		})
 
 		// Query to the product database for most products sorted by most recently created
-		var latestProducts = Product.find();
-		latestProducts.pageTitle = "Product created!";
-		res.render('products', {"products": latestProducts})
+		Product
+			.find()
+			.sort({"_id":-1})
+			.exec(function(err, products){
+				products.pageTitle = "You added a new product: "
+				res.render('products', {"products" : products});
+			});
 	})	
 	.get(function(req, res){
 		Product.find(function(err, products){
@@ -181,10 +195,17 @@ router.route('/products/new/isbn')
 
 		  //the whole response has been recieved, so we just print it out here
 		  response.on('end', function () {
-		  	var products = JSON.parse(str)
-		  	products.pageTitle = "ISBN Search Result"
-		  	console.log(products);
-		  	res.render('isbn-results', {"products" : products})
+		  	var products = JSON.parse(str);
+		  	if(products.error){
+		  		var errorText = "Unable to locate ISBN " + isbn;
+		  		res.render('isbn-form', {error: errorText})
+		  	} else {
+		  		products.pageTitle = "ISBN Search Result"
+			  	products.isbn = isbn;
+			  	products.coverImage = getCover(isbn);
+			  	res.render('isbn-results', {"products" : products})
+		  	}
+		  	
 		  });
 		};
 

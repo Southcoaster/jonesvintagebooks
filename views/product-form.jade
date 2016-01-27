@@ -25,22 +25,23 @@ block content
 			span.label ISBN
 			input(type="text", name="isbn")
 		div.input
-			span.label Price
+			span.label Price 
 			input(type="text", name="price")
+			span.sublabel format: 3.55 , no need to put "$".
 		div.input Location
 			br
-			span.label Row
+			span.sublabel Row
 			select(name="row", required)
 				option(value="--") --
 				option(value="A") A
 				option(value="B") B
 				option(value="C") C
-			span.label Stack
+			span.sublabel Stack
 			select(name="stack", required)
 				option(value="--") --
 				option(value="1") 1
 				option(value="2") 2
-			span.label Box
+			span.sublabel Box
 			select(name="box", required)
 				option(value="--") --
 				option(value="1") 1
@@ -53,11 +54,12 @@ block content
 				option(value="8") 8
 		div.input
 			span.label For Sale?
-			select(name="forSale", required)
+			select(name="forSale")
 				option(value="true") Yes, This is for sale
 				option(value="false") No, this is not for sale
 		div.input
-			span.label Notes (not visible to customer)
+			span.label Notes 
+			span.sublabel (not visible to customer)
 			textarea(name="notes", cols="70", rows="10")
 
 		div.actions

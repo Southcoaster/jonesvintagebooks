@@ -5,10 +5,12 @@ html
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
 		header
-			h1 Jones Vintage Books
+			a(href='/')
+				h1.mast-head Jones Vintage Books
 			.link-wrapper
-				a(href='/products/new') Add New Item
-				a(href='/products/') View Products
+				a(href='/products/new') Add Item (Manually)
+				a(href='/products/new/isbn') Add Item (ISBN)
+				a(href='/products/') View All Products
 		.container
 			.main-content
 				block content

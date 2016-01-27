@@ -1,16 +1,12 @@
 extend layout
 block content
-	if product.title
-		h1 #{products.pageTitle}
-		h2 #{product.title}
-		img.productImage(src='#{product.image}' width='50' height='100')
-		p.title Title: #{product.title}
-		p.author Author: #{product.author}
-		p.description Description: #{product.description}
-		p.condition Condition: #{product.condition}
-		//- .notes notes: #{product.notes}
-		p.location Location: #{product.row} #{product.stack} #{product.box}
-		p.price Price #{product.price}
-	else
-		h1 product.title not found
-		h2 #{product.title_long}
+	h1 #{product.pageTitle}
+	h2 #{product.title}
+	img.productImage(src='http://covers.openlibrary.org/b/isbn/'+product.isbn+'-S.jpg' )
+	p.title Title: #{product.title}
+	p.author Author: #{product.author}
+	p.description Description: #{product.description}
+	p.condition Condition: #{product.condition}
+	//- .notes notes: #{product.notes}
+	p.location Location: #{product.row} #{product.stack} #{product.box}
+	p.price Price #{product.price}

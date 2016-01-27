@@ -2,46 +2,55 @@ extend layout
 block content
 	h2 ISBN Lookup
 	.container 
-		.title #{title}
+		img(src= "http://" + products.coverImage)
 		form(name='new-product-isbn', action="/products/new", method="post")
-			p.title Title: #{products.data[0].title_long}
+			p.title Title: #{products.data[0].title}
 			p.author Authors: #{products.data[0].author_data[0].name}
+			p.isbn ISBN: #{products.isbn}
 			p.description description: #{products.data[0].summary}
+			div.input-hidden
+				input(type="text", name="title", required, value="#{products.data[0].title}")
+			div.input-hidden
+				span.label Author
+				input(type="text", name="author", value='#{products.data[0].author_data[0].name}')
+			div.input-hidden
+				span.label Description
+				textarea(name="description", cols="40", rows="5", value='#{products.data[0].summary}')
+			
 			div.input
-			span.label Condition
-			select(name="condition", required)
-				option(value='------') --------------------
-				option(value='New / Like New') New / Like New
-				option(value='Excellent') Excellent
-				option(value='Good') Good
-				option(value='Fair') Fair
-				option(value='Poor') Poor
-				option(value='Damaged') Damaged
+				span.label Condition
+				select(name="condition", required)
+					option(value='------') --------------------
+					option(value='New / Like New') New / Like New
+					option(value='Excellent') Excellent
+					option(value='Good') Good
+					option(value='Fair') Fair
+					option(value='Poor') Poor
+					option(value='Damaged') Damaged
 			div.input Location
-			br
-			span.label Row
-			select(name="row", required)
-				option(value="--") --
-				option(value="A") A
-				option(value="B") B
-				option(value="C") C
-			span.label Stack
-			select(name="stack", required)
-				option(value="--") --
-				option(value="1") 1
-				option(value="2") 2
-			span.label Box
-			select(name="box", required)
-				option(value="--") --
-				option(value="1") 1
-				option(value="2") 2
-				option(value="3") 3
-				option(value="4") 4
-				option(value="5") 5
-				option(value="6") 6
-				option(value="7") 7
-				option(value="8") 8
-			//-p.price Price #{product.price}
+				span.label Row
+				select(name="row", required)
+					option(value="--") --
+					option(value="A") A
+					option(value="B") B
+					option(value="C") C
+				span.label Stack
+				select(name="stack", required)
+					option(value="--") --
+					option(value="1") 1
+					option(value="2") 2
+				span.label Box
+				select(name="box", required)
+					option(value="--") --
+					option(value="1") 1
+					option(value="2") 2
+					option(value="3") 3
+					option(value="4") 4
+					option(value="5") 5
+					option(value="6") 6
+					option(value="7") 7
+					option(value="8") 8
+			//-div.price Price #{product.price}
 			div.input
 			span.label For Sale?
 			select(name="forSale", required)
