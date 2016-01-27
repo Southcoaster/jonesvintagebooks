@@ -10,11 +10,18 @@ block content
 							img.productThumb(src='http://covers.openlibrary.org/b/isbn/'+ product.isbn + '.jpg')
 						else
 							img.productThumb(src='/img/generic-cover.png')
-						div.title Title: #{product.title}
-						div.author Author: #{product.author}
-						div.isbn ISBN: #{product.isbn}
-						div.description description: #{product.description}
-						div.condition condition: #{product.condition}
-						//- .notes notes: #{product.notes}
-						//- p.location location: #{product.row} #{product.stack} #{product.box}
-						div.price Price #{product.price}
+						div.product-info-wrapper
+							div.input
+								span.label Title: 
+								span.sublabel #{product.title}
+							div.label Author: 
+								span.sublabel #{product.author}
+							div.isbn ISBN:  
+								span.sublabel #{product.isbn}
+							div.description Description: 
+								span.sublabel #{product.description}
+							div.condition Condition: 
+								span.sublabel #{product.condition}
+							//- .notes notes: #{product.notes}
+							//- p.location location: #{product.row} #{product.stack} #{product.box}
+							div.price Price #{product.price}

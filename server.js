@@ -130,6 +130,10 @@ router.route('/products/new')
 		product.title = req.body.title;
 		product.author = req.body.author;
 		product.description = req.body.description;
+		var desc = product.description;
+			desc.slice(0,130);
+			desc += "... ";
+		product.shortDescription = "this is a short description";
 		product.isbn = req.body.isbn;
 		product.firstEdition = req.body.firstEdition;
 		product.dewey = req.body.dewey;

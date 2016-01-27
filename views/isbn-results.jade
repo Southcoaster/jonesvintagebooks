@@ -15,8 +15,8 @@ block content
 			div.input-hidden
 				input(type="text", name="isbn", value="#{products.isbn}")
 			//- div.input
-			//- 	span.label Description: 
-			//- 	span.sublabel #{products.data[0].summary}
+			//-  	span.label Description: 
+			//-  	span.sublabel #{products.data[0].summary}
 			div.input-hidden
 				input(type="text", name="title", required, value="#{products.data[0].title}")
 			div.input-hidden
@@ -25,7 +25,8 @@ block content
 			div.input
 				span.label Description
 				br
-				textarea(name="description", cols="40", rows="5", value='#{products.data[0].summary}')
+				input.input-hidden(name="description", cols="40", rows="5", value='#{products.data[0].summary}')
+				p.sublabel #{products.data[0].summary}
 			
 			div.input
 				span.label Condition
@@ -65,10 +66,10 @@ block content
 				span.label Price
 				input(type="text", name="price")
 			div.input
-			span.label For Sale?
-			select(name="forSale", required)
-				option(value="true") Yes, This is for sale
-				option(value="false") No, this is not for sale
+				span.label For Sale?
+				select(name="forSale", required)
+					option(value="true") Yes, This is for sale
+					option(value="false") No, this is not for sale
 			div.input
 				span.label Notes 
 				span.sublabel (not visible to customer)
