@@ -184,15 +184,11 @@ router.route('/products/new/isbn')
 			};
 
 		var callback = function(response) {
-		  //console.log(response)
-
 		  var str = '';
-
 		  //another chunk of data has been recieved, so append it to `str`
 		  response.on('data', function (chunk) {
 		    str += chunk;
 		  });
-
 		  //the whole response has been recieved, so we just print it out here
 		  response.on('end', function () {
 		  	var products = JSON.parse(str);
@@ -205,7 +201,6 @@ router.route('/products/new/isbn')
 			  	products.coverImage = getCover(isbn);
 			  	res.render('isbn-results', {"products" : products})
 		  	}
-		  	
 		  });
 		};
 
@@ -216,7 +211,7 @@ router.route('/products/new/isbn')
 //Display, Update and Delete single product
 router.route('/products/:product_id')
 
-	//get the product with that id
+	//GET a product with id
 	.get(function(req, res){
 		Product.findById(req.params.product_id, function(err, product){
 			if(err)
@@ -227,20 +222,35 @@ router.route('/products/:product_id')
 
 	.put(function(req, res){
 
-		// use our product model to find the product we want
+		// PUT our product model to find the product we want
 		Product.findById(req.params.product_id, function(err, product){
 
 			if (err)
 				res.send(err);
 
-		 	product.name = req.body.name;  // update product name
+		 	//product.name = req.body.name;  // update product name
+		 	product.title = req.body.title;
+			product.author = req.body.author;
+			product.description = req.body.description;
+			product.isbn = req.body.isbn;
+			product.firstEdition = req.body.firstEdition;
+			product.dewey = req.body.dewey;
+			product.pageCount = req.body.pageCount;
+			product.condition = req.body.condition;
+			product.price = req.body.price;
+			product.row = req.body.row;
+			product.stack = req.body.stack;
+			product.box = req.body.box;
+			product.updatedDate = new Date();
+			if(req.body.notes)
+				product.notes = req.body.notes;
 
+			//save product and error checking
 			product.save(function(err){
 				if(err)
 					res.send(err);
-
-				res.json({message: 'Product updated.'});
-			});
+				console.log("updating product: "+product._id)			
+			});	
 		});
 	})
 

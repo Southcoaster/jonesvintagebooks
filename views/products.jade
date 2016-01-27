@@ -6,12 +6,15 @@ block content
 			each product, i in products
 				li.product-wrapper
 					a(href= '#{product._id}')
-						img.productThumb(src='http://covers.openlibrary.org/b/isbn/'+ product.isbn + '.jpg')
-						p.title Title: #{product.title}
-						p.author Author: #{product.author}
-						p.isbn ISBN: #{product.isbn}
-						p.description description: #{product.description}
-						p.condition condition: #{product.condition}
+						if product.isbn
+							img.productThumb(src='http://covers.openlibrary.org/b/isbn/'+ product.isbn + '.jpg')
+						else
+							img.productThumb(src='/img/generic-cover.png')
+						div.title Title: #{product.title}
+						div.author Author: #{product.author}
+						div.isbn ISBN: #{product.isbn}
+						div.description description: #{product.description}
+						div.condition condition: #{product.condition}
 						//- .notes notes: #{product.notes}
-						p.location location: #{product.row} #{product.stack} #{product.box}
-						p.price Price #{product.price}
+						//- p.location location: #{product.row} #{product.stack} #{product.box}
+						div.price Price #{product.price}

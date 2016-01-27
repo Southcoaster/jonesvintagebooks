@@ -1,20 +1,30 @@
 extend layout
 block content
-	h2 ISBN Lookup
 	.container 
-		img(src= "http://" + products.coverImage)
+		img.productImage(src= "http://" + products.coverImage)
 		form(name='new-product-isbn', action="/products/new", method="post")
-			p.title Title: #{products.data[0].title}
-			p.author Authors: #{products.data[0].author_data[0].name}
-			p.isbn ISBN: #{products.isbn}
-			p.description description: #{products.data[0].summary}
+			div.input
+				span.label Title: 
+				span.sublabel #{products.data[0].title}
+			div.input
+				span.label Authors:  
+				span.sublabel #{products.data[0].author_data[0].name}
+			div.input
+				span.label ISBN:  
+				span.sublabel #{products.isbn}
+			div.input-hidden
+				input(type="text", name="isbn", value="#{products.isbn}")
+			//- div.input
+			//- 	span.label Description: 
+			//- 	span.sublabel #{products.data[0].summary}
 			div.input-hidden
 				input(type="text", name="title", required, value="#{products.data[0].title}")
 			div.input-hidden
 				span.label Author
 				input(type="text", name="author", value='#{products.data[0].author_data[0].name}')
-			div.input-hidden
+			div.input
 				span.label Description
+				br
 				textarea(name="description", cols="40", rows="5", value='#{products.data[0].summary}')
 			
 			div.input
@@ -28,18 +38,19 @@ block content
 					option(value='Poor') Poor
 					option(value='Damaged') Damaged
 			div.input Location
-				span.label Row
+				br
+				span.sublabel Row
 				select(name="row", required)
 					option(value="--") --
 					option(value="A") A
 					option(value="B") B
 					option(value="C") C
-				span.label Stack
+				span.sublabel Stack
 				select(name="stack", required)
 					option(value="--") --
 					option(value="1") 1
 					option(value="2") 2
-				span.label Box
+				span.sublabel Box
 				select(name="box", required)
 					option(value="--") --
 					option(value="1") 1
@@ -50,14 +61,18 @@ block content
 					option(value="6") 6
 					option(value="7") 7
 					option(value="8") 8
-			//-div.price Price #{product.price}
+			div.input
+				span.label Price
+				input(type="text", name="price")
 			div.input
 			span.label For Sale?
 			select(name="forSale", required)
 				option(value="true") Yes, This is for sale
 				option(value="false") No, this is not for sale
 			div.input
-				span.label Notes (not visible to customer)
-				textarea(name="notes", cols="70", rows="10")
+				span.label Notes 
+				span.sublabel (not visible to customer)
+				br
+				textarea(name="notes", cols="45", rows="10")
 			div.actions
 				input(type="submit", value="SUBMIT")
